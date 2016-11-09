@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dto" class="dailywork2.BankDTO"  scope="prototype"/>
+
+	<bean id="dbtemplate" class="dailywork2.DBTemplate" scope="prototype"/>
+
+	
+	<bean id="dao" class="dailywork2.BankDAO" scope="prototype">
+		<property name="dbtemplate">
+			<ref bean="dbtemplate"></ref>
+		</property>
+	</bean>
+	
+	<bean id="service" class="dailywork2.BankService" scope="prototype">
+		<property name="dbtemplate">
+			<ref bean="dbtemplate"></ref>
+		</property>
+		<property name="dao">
+			<ref bean="dao"></ref>
+		</property>
+	</bean>
+
+
+
+
+</beans>
